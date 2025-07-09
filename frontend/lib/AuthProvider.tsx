@@ -1,41 +1,53 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { createSupabaseClient } from './supabase'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { createBrowserClient } from '@supabase/ssr'
+import { AuthChangeEvent, Session, SupabaseClient, User } from '@supabase/supabase-js'
 
-const supabase = createSupabaseClient()
+type SupabaseContext = {
+  supabase: SupabaseClient
+  user: User | null
+}
 
-export const AuthContext = createContext<any>(null)
+const Context = createContext<SupabaseContext | undefined>(undefined)
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<any>(null)
+export default function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [supabase] = useState(() => createBrowserClient())
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
     const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser()
-      if (error) {
-        console.error('Error getting user:', error)
-      } else {
-        setUser(data?.user ?? null)
-      }
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      setUser(user)
     }
 
     fetchUser()
 
-    const { subscription } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-    })
+    // ✅ FIXED: Explicitly typed event and session to satisfy TypeScript
+    const { subscription } = supabase.auth.onAuthStateChange(
+      (_event: AuthChangeEvent, session: Session | null) => {
+        setUser(session?.user ?? null)
+      }
+    )
 
     return () => {
       subscription.unsubscribe()
     }
-  }, [])
+  }, [supabase])
 
   return (
-    <AuthContext.Provider value={{ user }}>
+    <Context.Provider value={{ supabase, user }}>
       {children}
-    </AuthContext.Provider>
+    </Context.Provider>
   )
 }
 
-export const useAuth = () => useContext(AuthContext)
+export const useSupabase = () => {
+  const context = useContext(Context)
+  if (context === undefined) {
+    throw new Error('useSupabase must be used within an AuthProvider')
+  }
+  return context
+}
