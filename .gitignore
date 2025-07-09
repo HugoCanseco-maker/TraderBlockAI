@@ -1,0 +1,44 @@
+# --- Python backend ignores ---
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+env/
+
+# Environment variables
+.env
+
+# Logs and local dev data
+*.log
+*.csv
+
+# Supabase build artifacts
+backend/supabase/.temp/
+backend/supabase/functions/node_modules/
+
+# VS Code + Mac OS junk
+.vscode/
+.DS_Store
+
+# --- Node/Next.js frontend ignores ---
+# Dependencies
+frontend/node_modules/
+
+# Build outputs
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+
+# Logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Local env
+frontend/.env.local
+frontend/.env.*.local
+
+# Vercel deployment config
+.vercel/

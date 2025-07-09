@@ -1,0 +1,28 @@
+# --- Core ML libraries ---
+tensorflow
+keras==3.10.0
+scikit-learn
+numpy
+pandas
+
+# --- Time series & financial data ---
+yfinance
+hmmlearn
+joblib
+h5py
+
+# --- NLP sentiment analysis ---
+nltk
+vaderSentiment
+
+# --- Supabase + trading platform ---
+supabase
+alpaca-trade-api
+
+# --- Backend / FastAPI ---
+fastapi
+uvicorn
+
+# --- Misc utilities ---
+python-dotenv
+requests

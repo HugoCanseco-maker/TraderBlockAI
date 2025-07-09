@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-dotenv
+supabase
+httpx
+pydantic
+pandas
+numpy
+scikit-learn
+tensorflow
+yfinance
+matplotlib
