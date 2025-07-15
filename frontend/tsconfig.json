@@ -16,9 +16,9 @@
     "incremental": true,
     "baseUrl": ".",                             // ✅ add this
     "paths": {                                  // ✅ add this
-      "@/*": ["src/*"]
+      "@/*": ["src/*", "../src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../src/types/database.types.ts"],
   "exclude": ["node_modules"]
 }
