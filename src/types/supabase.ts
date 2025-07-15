@@ -7,8 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
   }
@@ -65,6 +63,36 @@ export type Database = {
           alpaca_key?: string | null
           alpaca_secret?: string | null
           user_id?: string
+        }
+        Relationships: []
+      }
+      trades: {
+        Row: {
+          id: number
+          user_id: string | null
+          symbol: string | null
+          action: string | null
+          qty: number | null
+          executed_price: number | null
+          timestamp: string | null
+        }
+        Insert: {
+          id?: number
+          user_id?: string | null
+          symbol?: string | null
+          action?: string | null
+          qty?: number | null
+          executed_price?: number | null
+          timestamp?: string | null
+        }
+        Update: {
+          id?: number
+          user_id?: string | null
+          symbol?: string | null
+          action?: string | null
+          qty?: number | null
+          executed_price?: number | null
+          timestamp?: string | null
         }
         Relationships: []
       }
