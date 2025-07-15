@@ -6,7 +6,7 @@ httpx
 pydantic
 pandas
 numpy
-scikit-learn
-tensorflow
 yfinance
 matplotlib
+scikit-learn
+tensorflow-cpu==2.12.0

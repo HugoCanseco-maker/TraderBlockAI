@@ -6,9 +6,9 @@ import yfinance as yf
 import joblib
 
 from sklearn.preprocessing import MinMaxScaler
-from keras.models import Sequential
-from keras.layers import LSTM, Dense, Input
-from keras.callbacks import EarlyStopping
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Input
+from tensorflow.keras.callbacks import EarlyStopping
 
 # Save to simplified folder with clean names
 SAVE_DIR = os.path.join(os.path.dirname(__file__), "saved")

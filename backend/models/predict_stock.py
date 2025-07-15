@@ -3,7 +3,7 @@ import sys
 import joblib
 import yfinance as yf
 import numpy as np
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 
 # Fix import paths
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
