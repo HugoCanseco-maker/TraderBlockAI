@@ -1,6 +1,6 @@
 # backend/services/alpaca_client.py
 from alpaca_trade_api.rest import REST
-from config import config
+import config
 
 def get_alpaca_client(api_key=None, api_secret=None):
     api_key = api_key or config.DEFAULT_ALPACA_KEY
