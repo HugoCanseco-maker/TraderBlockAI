@@ -26,9 +26,11 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
+        const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+
         const [predRes, tradeRes] = await Promise.all([
-          fetch('https://traderblock-backend.onrender.com/api/top_predictions'),
-          fetch('/api/trades'), // Change this when live trades are ready
+          fetch(`${baseUrl}/api/top_predictions`),
+          fetch(`${baseUrl}/api/trades`),
         ]);
 
         const predData = await predRes.json();
