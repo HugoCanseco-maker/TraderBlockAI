@@ -1,4 +1,3 @@
-//frontend/app/dashboard/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -71,6 +70,14 @@ export default function Dashboard() {
         </div>
       </header>
 
+      {/* Sim Mode Welcome */}
+      <section className="bg-zinc-800 p-4 rounded-xl shadow mb-8">
+        <p className="text-lg text-green-400 font-semibold">Welcome to Sim Mode!</p>
+        <p className="text-gray-300 text-sm mt-1">
+          Try out AI-powered trades in a safe environment before switching to live mode. Performance is simulated using real-time market predictions.
+        </p>
+      </section>
+
       {/* Portfolio Summary */}
       <section className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 mb-8">
         <div className="bg-zinc-800 p-4 rounded-xl shadow">
@@ -118,13 +125,6 @@ export default function Dashboard() {
               {m === 'sim' ? 'Sim Mode' : 'Live Mode'}
             </button>
           ))}
-        </div>
-      </section>
-
-      {/* Chart Placeholder */}
-      <section className="mb-8">
-        <div className="h-64 w-full bg-zinc-800 rounded-xl flex items-center justify-center text-gray-400 shadow">
-          Chart Placeholder
         </div>
       </section>
 
@@ -201,4 +201,3 @@ export default function Dashboard() {
     </main>
   );
 }
-// trigger redeploy
