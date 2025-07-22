@@ -14,10 +14,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "src", // 🔥 now @ maps to src/
+
+    // ✅ Fix applied here
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./*"]
     },
+
     "plugins": [
       {
         "name": "next"
