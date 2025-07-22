@@ -14,9 +14,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".", // root of your frontend folder
+    "baseUrl": "src", // 🔥 now @ maps to src/
     "paths": {
-      "@/*": ["./*"] // maps "@/components" to "./components"
+      "@/*": ["*"]
     },
     "plugins": [
       {
@@ -28,8 +28,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "types/**/*.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
