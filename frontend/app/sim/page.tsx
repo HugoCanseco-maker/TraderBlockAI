@@ -1,83 +1,88 @@
 //frontend/app/sim/page.tsx
-"use client";
-
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
-
-const simSteps = [
-  {
-    title: "Step 1: Scanning the Market 📈",
-    description:
-      "Our LSTM and statistical models pull historical data to detect trends across 50+ stocks.",
-  },
-  {
-    title: "Step 2: Making a Prediction 🧠",
-    description:
-      "TraderBlockAI forecasts stock movement with a confidence score and a target window.",
-  },
-  {
-    title: "Step 3: Recommendation Ready ✅",
-    description:
-      "You get a simple trade suggestion: Buy, Sell, or Hold — fully explainable, no black boxes.",
-  },
-  {
-    title: "Step 4: You Approve the Trade 🧠",
-    description:
-      "Sim Mode lets you approve or reject trade suggestions before anything is executed.",
-  },
-  {
-    title: "Step 5: Trade Simulated 🧪",
-    description:
-      "Watch the trade “execute” in real-time, updating your virtual P&L instantly.",
-  },
-];
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function SimModePage() {
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStep((prev) => (prev + 1) % simSteps.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const currentStep = simSteps[step];
+  const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4 py-12">
-      <motion.div
-        key={currentStep.title}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center max-w-xl"
-      >
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">{currentStep.title}</h2>
-        <p className="text-lg sm:text-xl">{currentStep.description}</p>
-      </motion.div>
+    <div className="min-h-screen bg-black text-white px-6 py-10 flex flex-col gap-10">
+      {/* TITLE */}
+      <h1 className="text-4xl md:text-5xl font-bold text-center">
+        Sim Mode Preview
+      </h1>
+      <p className="text-center max-w-xl mx-auto text-gray-400">
+        See how TraderBlockAI makes real predictions using market data, AI pattern
+        detection, and transparent decision logic.
+      </p>
 
-      <motion.div
-        className="mt-12 flex flex-col sm:flex-row gap-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <Button
-          className="bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg text-md"
-          onClick={() => window.location.href = "/join"}
+      {/* ANIMATION SEQUENCE */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="bg-gray-900 p-6 rounded-2xl shadow"
         >
-          Join the Beta
-        </Button>
+          <h2 className="text-xl font-semibold mb-2">Step 1</h2>
+          <p className="text-sm">Scanning market data (yFinance)</p>
+        </motion.div>
 
-        <Button
-          className="border border-white text-white hover:bg-white hover:text-black px-6 py-3 rounded-lg text-md"
-          onClick={() => window.location.href = "/dashboard"}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="bg-gray-900 p-6 rounded-2xl shadow"
         >
-          Launch Dashboard
-        </Button>
-      </motion.div>
+          <h2 className="text-xl font-semibold mb-2">Step 2</h2>
+          <p className="text-sm">Analyzing chart patterns with LSTM</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="bg-gray-900 p-6 rounded-2xl shadow"
+        >
+          <h2 className="text-xl font-semibold mb-2">Step 3</h2>
+          <p className="text-sm">Calculating confidence + prediction</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="bg-green-700/80 p-6 rounded-2xl shadow-lg border border-green-300"
+        >
+          <h2 className="text-xl font-semibold mb-2">Step 4</h2>
+          <p className="text-sm font-mono">
+            BUY AAPL ↑ @ $211.53 <br />
+            (July 22, 2025)
+          </p>
+        </motion.div>
+      </div>
+
+      {/* EXPLANATION BLOCK */}
+      <div className="bg-gray-800 p-8 rounded-2xl max-w-4xl mx-auto text-left shadow-xl">
+        <h2 className="text-2xl font-bold mb-4">How TraderBlockAI Works</h2>
+        <ul className="list-disc pl-6 space-y-2 text-sm text-gray-300">
+          <li>
+            Uses real historical data from yFinance and (soon) Alpaca for modeling
+          </li>
+          <li>
+            LSTM model learns from price action trends and volume indicators
+          </li>
+          <li>
+            Confidence scoring added using standard deviation + future intervals
+          </li>
+          <li>
+            Sentiment analysis (news headlines) will soon refine predictions further
+          </li>
+        </ul>
+        <Button className="mt-6" onClick={() => router.push("/login")}>Login to Access Live Sim Mode</Button>
+      </div>
     </div>
   );
 }
