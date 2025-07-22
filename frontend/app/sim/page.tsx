@@ -1,8 +1,10 @@
-//frontend/app/sim/page.tsx
+'use client';
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+
 
 export default function SimModePage() {
   const router = useRouter();
@@ -81,7 +83,9 @@ export default function SimModePage() {
             Sentiment analysis (news headlines) will soon refine predictions further
           </li>
         </ul>
-        <Button className="mt-6" onClick={() => router.push("/login")}>Login to Access Live Sim Mode</Button>
+        <Button className="mt-6" onClick={() => router.push("/login")}>
+          Login to Access Live Sim Mode
+        </Button>
       </div>
     </div>
   );
