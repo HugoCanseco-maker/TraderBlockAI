@@ -1,61 +1,60 @@
-// frontend/app/page.tsx
-'use client';
+// app/dashboard/page.tsx will be locked separately — this is landing
 
-import NavBar from '../components/NavBar';
-import StockTicker from '../components/StockTicker';
-import Hero from '../components/Hero';
-import FeatureSection from '../components/FeatureSection';
-import Footer from '../components/Footer';
+"use client";
+"use client";
+import { useRouter } from "next/navigation";
+import Ticker from "@/components/StockTicker";
+import { Button } from "@/components/ui/button";
 
-export default function HomePage() {
+export default function LandingPage() {
+  const router = useRouter();
+
   return (
-    <main className="min-h-screen bg-black text-white">
-      {/* Ticker */}
-      <div className="sticky top-0 z-50 bg-black border-b border-gray-800">
-        <StockTicker />
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      {/* Top: Welcome + Ticker */}
+      <div className="py-10 px-6 text-center border-b border-gray-800">
+        <h1 className="text-4xl font-bold mb-2">Welcome to TraderBlock AI</h1>
+        <p className="max-w-xl mx-auto text-gray-400">
+          Your AI-powered trading assistant, built to help underserved inv$estors make smarter financial decisions.
+        </p>
+        <div className="mt-6">
+          <Ticker />
+        </div>
       </div>
 
-      {/* Nav */}
-      <NavBar />
+      {/* Middle: Why TraderBlockAI */}
+      <div className="py-12 px-6 bg-zinc-900 border-b border-gray-800">
+        <h2 className="text-2xl font-semibold text-center mb-8">Why TraderBlockAI?</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="p-6 bg-zinc-800 rounded-2xl shadow text-center">
+            <h3 className="text-xl font-bold mb-2">Try Sim</h3>
+            <p className="text-gray-400">Test trades in our risk-free simulation environment.</p>
+          </div>
+          <div className="p-6 bg-zinc-800 rounded-2xl shadow text-center">
+            <h3 className="text-xl font-bold mb-2">See Mode</h3>
+            <p className="text-gray-400">Preview how Chill / Moderate / Aggressive trading works.</p>
+          </div>
+          <div className="p-6 bg-zinc-800 rounded-2xl shadow text-center">
+            <h3 className="text-xl font-bold mb-2">Preview Dashboard</h3>
+            <p className="text-gray-400">Understand the dashboard layout before logging in.</p>
+          </div>
+        </div>
+      </div>
 
-      {/* Hero Section */}
-      <section className="pt-24 px-6 text-center">
-        <h1 className="text-5xl font-bold mb-4 text-green-500">TraderBlockAI</h1>
-        <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed mb-6">
-          Your AI-powered trading co-pilot. Trade smarter with real-time predictions,
-          news sentiment analysis, and risk-tuned strategies. Built by students, for everyone.
-        </p>
-        <a
-          href="/dashboard"
-          className="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-500 transition"
-        >
-          Launch Dashboard
-        </a>
-      </section>
-
-      {/* Features */}
-      <section id="features" className="mt-32 px-6">
-        <FeatureSection />
-      </section>
-
-      {/* CTA */}
-      <section id="join-beta" className="mt-32 px-6 text-center">
-        <h2 className="text-3xl font-bold mb-4 text-green-400">Join the Beta</h2>
-        <p className="text-gray-300 max-w-2xl mx-auto mb-6">
-          Sim Mode is now built directly into the dashboard. Click below to get started and try the live prediction engine.
-        </p>
-        <a
-          href="/dashboard"
-          className="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-500 transition"
-        >
-          Launch Dashboard
-        </a>
-      </section>
+      {/* Bottom: Sim Mode Preview + Callouts */}
+      <div className="py-12 px-6 bg-black text-center">
+        <h2 className="text-2xl font-semibold mb-4">Ready to Explore?</h2>
+        <p className="text-gray-400 mb-8">Watch how the model acts live. Then go hands-on.</p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Button onClick={() => router.push("/sim")}>Try Sim Mode</Button>
+          <Button variant="secondary" onClick={() => router.push("/dashboard")}>See Dashboard</Button>
+        </div>
+      </div>
 
       {/* Footer */}
-      <div className="mt-32">
-        <Footer />
-      </div>
-    </main>
+      <footer className="py-4 px-6 text-center text-sm text-gray-500 border-t border-gray-800">
+        &copy; 2025 TraderBlockAI. All rights reserved.
+      </footer>
+    </div>
   );
 }
